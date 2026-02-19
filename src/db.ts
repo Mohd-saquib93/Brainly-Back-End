@@ -4,7 +4,7 @@ import mongoose, {model,Schema} from "mongoose"
 import { string } from "zod";
 import { required } from "zod/mini";
 
-mongoose.connect("mongodb+srv://saquib9643_db_user:xa5jhoSZJKHKSp4r@brainly.lootlum.mongodb.net/") //this has to change to with your own mongo db url
+mongoose.connect("mongodb+srv://saquib9643_db_user:5HrcVtma74ffT6bn@brainly.lootlum.mongodb.net/") //this has to change to with your own mongo db url
 
 const UserSchema = new Schema({
   username: {type:String,unique:true},
