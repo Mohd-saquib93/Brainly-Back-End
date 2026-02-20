@@ -4,7 +4,8 @@ import mongoose, {model,Schema} from "mongoose"
 import { string } from "zod";
 import { required } from "zod/mini";
 
-mongoose.connect("mongodb+srv://saquib9643_db_user:5HrcVtma74ffT6bn@brainly.lootlum.mongodb.net/") //this has to change to with your own mongo db url
+mongoose.connect("mongodb+srv://saquib_9310:ZjlgDoCvflaLsXf9@brainly.7ft3fok.mongodb.net/brainlyapp") //this has to change to with your own mongo db url
+
 // mongoose.connect(process.env.MONGO_URL!);
 
 
@@ -19,7 +20,7 @@ const ContentSchema = new Schema({
   title:String,
   link:String,
   type:String,
-  tags:[{type: mongoose.Types.ObjectId, ref:'Tag'}],
+  tags: [{type:mongoose.Types.ObjectId, ref:'Tag'}],
   userId:{type: mongoose.Types.ObjectId,ref:'User'},
 })
 
