@@ -15,21 +15,8 @@ import cors from "cors";
 
 
 const app = express();
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://brainly-front-end-three.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
-
-app.options("*", cors());
-
 app.use(express.json());
-
-
+app.use(cors());
 
 app.post("/api/v1/signup", async(req,res) => {
     //zod validation,hash the password
