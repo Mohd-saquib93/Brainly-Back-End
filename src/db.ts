@@ -4,8 +4,8 @@ import mongoose, {model,Schema} from "mongoose"
 import { string } from "zod";
 import { required } from "zod/mini";
 
-mongoose.connect("mongodb+srv://saquib_9310:ZjlgDoCvflaLsXf9@brainly.7ft3fok.mongodb.net/brainlyapp") // this has to change to with your own mongo db url
-
+mongoose.connect("mongodb+srv://saquib_9310:ZjlgDoCvflaLsXf9@brainly.7ft3fok.mongodb.net/brainly") // this has to change to with your own mongo db url
+// mongodb+srv://saquib_9310:ZjlgDoCvflaLsXf9@brainly.7ft3fok.mongodb.net/brainly
 
 
 
