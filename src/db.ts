@@ -2,9 +2,18 @@
 
 import mongoose, { model, Schema } from "mongoose"
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/brainly")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Could not connect to MongoDB", err));
+const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/brainly";
+console.log("Attempting to connect to MongoDB...");
+if (!process.env.MONGODB_URI) {
+  console.warn("Warning: MONGODB_URI environment variable is not set. Falling back to localhost.");
+}
+
+mongoose.connect(mongoURI)
+  .then(() => console.log("Successfully connected to MongoDB"))
+  .catch((err) => {
+    console.error("Critical: Could not connect to MongoDB!", err);
+    process.exit(1); // Exit if DB connection fails in production
+  });
 
 const UserSchema = new Schema({
   username: { type: String, unique: true },

@@ -52,21 +52,25 @@ app.post("/api/v1/signup", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    const hashedPassword = await bcrypt.hash(password, 5);
-    console.log("hashedpassword", hashedPassword);
+    console.log(`Signup attempt for username: ${username}`);
 
     try {
+        const hashedPassword = await bcrypt.hash(password, 5);
         await UserModel.create({
             username: username,
             password: hashedPassword,
         });
 
+        console.log(`User created successfully: ${username}`);
         res.json({
             message: "User signed up"
         });
-    } catch (error) {
+    } catch (error: any) {
+        console.error("Signup error details:", error);
         res.status(409).json({
-            message: "Username already exists",
+            message: "Signup failed",
+            error: error.message || "Unknown error",
+            suggestion: "Check if username already exists or database connection is failing"
         });
     }
 })
