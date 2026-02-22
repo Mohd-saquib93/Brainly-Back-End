@@ -1,9 +1,8 @@
 import express from "express"; // npm install -D @types/express
-import mongoose from "mongoose";
 import jwt from "jsonwebtoken"; // npm install -D jsonwebtoken
 import { ContentModel, LinkModel, UserModel } from "./db.js";
-import z from "zod";
-import bcrypt from "bcrypt";
+import { z } from "zod";
+import bcrypt from "bcryptjs";
 import "./db.js";
 import { JWT_SECRET } from "./config.js";
 import { userMiddleware } from "./middleware.js";
@@ -15,6 +14,8 @@ app.use(cors({
         "http://localhost:5173",
         "https://brainly-front-end-three.vercel.app"
     ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
 app.use(express.json());
