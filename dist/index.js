@@ -11,8 +11,14 @@ import { userMiddleware } from "./middleware.js";
 import { random } from "./utils.js";
 import cors from "cors";
 const app = express();
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://brainly-front-end-three.vercel.app"
+    ],
+    credentials: true
+}));
 app.use(express.json());
-app.use(cors());
 app.post("/api/v1/signup", async (req, res) => {
     //zod validation,hash the password
     const requireBody = z.object({
@@ -25,6 +31,7 @@ app.post("/api/v1/signup", async (req, res) => {
             message: "Incorrect Format",
             error: parsedData.error,
         });
+        return;
     }
     const username = req.body.username;
     const password = req.body.password;
@@ -55,6 +62,7 @@ app.post("/api/v1/signin", async (req, res) => {
         res.status(404).json({
             message: "User does not exist"
         });
+        return;
     }
     const passwordMatch = await bcrypt.compare(password, existingUser.password);
     if (passwordMatch) {
