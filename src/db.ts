@@ -3,6 +3,8 @@
 import mongoose, { model, Schema } from "mongoose"
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/brainly")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Could not connect to MongoDB", err));
 
 const UserSchema = new Schema({
   username: { type: String, unique: true },

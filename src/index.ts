@@ -14,6 +14,11 @@ import cors from "cors";
 
 const app = express();
 
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} - Origin: ${req.headers.origin}`);
+    next();
+});
+
 app.use(cors({
     origin: [
         "http://localhost:5173",
@@ -60,7 +65,7 @@ app.post("/api/v1/signup", async (req, res) => {
             message: "User signed up"
         });
     } catch (error) {
-        res.status(411).json({
+        res.status(409).json({
             message: "Username already exists",
         });
     }
