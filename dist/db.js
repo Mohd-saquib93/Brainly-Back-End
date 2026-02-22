@@ -5,7 +5,9 @@ console.log("Attempting to connect to MongoDB...");
 if (!process.env.MONGODB_URI) {
     console.warn("Warning: MONGODB_URI environment variable is not set. Falling back to localhost.");
 }
-mongoose.connect(mongoURI)
+mongoose.connect(mongoURI, {
+    serverSelectionTimeoutMS: 5000 // Timeout after 5 seconds instead of 30+
+})
     .then(() => console.log("Successfully connected to MongoDB"))
     .catch((err) => {
     console.error("Critical: Could not connect to MongoDB!", err);
