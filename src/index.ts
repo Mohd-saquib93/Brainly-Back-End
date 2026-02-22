@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken"; // npm install -D jsonwebtoken
 import { ContentModel, LinkModel, UserModel } from "./db.js";
 import z from "zod";
-import { hash } from "zod";
 import bcrypt from "bcrypt";
 import "./db.js"
 import { JWT_SECRET } from "./config.js";

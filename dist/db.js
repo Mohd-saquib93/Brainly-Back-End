@@ -1,7 +1,5 @@
-// crete user  models and schemas 
+// create user models and schemas 
 import mongoose, { model, Schema } from "mongoose";
-import { string } from "zod";
-import { required } from "zod/mini";
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/brainly");
 const UserSchema = new Schema({
     username: { type: String, unique: true },
